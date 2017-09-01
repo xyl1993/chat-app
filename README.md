@@ -1,3 +1,3 @@
 # chat-app
-react-native 联系项目,尚在开发中
+react-native练习项目,尚在开发中
 
