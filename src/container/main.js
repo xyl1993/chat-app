@@ -4,7 +4,8 @@ import {  Navigator ,
     Text , 
     TabBarIOS,Image,
     StyleSheet,
-    ImageBackground
+    ImageBackground,
+    TouchableOpacity
 } from 'react-native';
 import { createStore , applyMiddleware , combineReducers } from 'redux';
 import { Provider } from 'react-redux';
@@ -61,14 +62,16 @@ export default class App extends Component {
     return (
         <ImageBackground style={styles.container} source={require('../public/Background.png')}>
             <View style={styles.header}>
-                <View style={{width:25}}>
-                    <Image source={require('../public/Icon-Menu.png')} />
-                </View>
+                <Text onPress={() => this.props.navigation.navigate('Menu')} style={{width:34}} >
+                    <Image source={require('../public/Icon-Menu.png')} style={{width:34,height:24}}/>
+                </Text>
                 <View style={{flex:1}}>
                     <Text style={{color:'#fff',fontSize:17,alignSelf:'center'}}>Good morning</Text>
                 </View>
                 <View style={{width:25}}>
-                    <Image style={{width:25,height:25}} source={require('../public/Avatar.png')} />
+                    <TouchableOpacity style={{width:25,height:25}} onPress={() => this.props.navigation.navigate('UserHome')}>
+                        <Image style={{width:25,height:25}} source={require('../public/Avatar.png')} />
+                    </TouchableOpacity>
                 </View>
             </View>
             <TabNavigator  

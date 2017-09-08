@@ -13,3 +13,6 @@ export const GET_VIDEO = 'GET_VIDEO'; // 视频列表
 export const GET_VIDEO_START = 'GET_VIDEO_START'; // 开始请求视频列表
 export const LOGOUT = 'LOGOUT' ; // 退出
 export const CLEAR_CACHE_DETAIL = 'CLEAR_CACHE_DETAIL' // 清除文章缓存
+
+export const GET_DYNAMIC = 'GET_DYNAMIC';  //获取动态列表信息
+export const GET_COMPOSE = 'GET_COMPOSE';  //获取好友

@@ -15,7 +15,10 @@ import LoginComponent from './src/page/login';
 import MainComponent from './src/container/main';
 import NewAccount from './src/page/newAccount';
 import Walkthrough from './src/page/walkthrough';
-
+import MenuComponent from './src/page/menu';
+import UserHomeComponent from './src/page/userHome';
+import ChatComponent from './src/page/chat';
+import Compose from './src/page/compose';
 const RouteConfigs = {
   Walkthrough: {
     screen:Walkthrough,
@@ -40,6 +43,34 @@ const RouteConfigs = {
   },
   Main:{
     screen: MainComponent,
+    navigationOptions:{
+      header:null,
+      gesturesEnabled:false,
+    }
+  },
+  Menu:{
+    screen: MenuComponent,
+    navigationOptions:{
+      header:null,
+      gesturesEnabled:false,
+    }
+  },
+  UserHome:{
+    screen:UserHomeComponent,
+    navigationOptions:{
+      header:null,
+      gesturesEnabled:false,
+    }
+  },
+  Chat:{
+    screen:ChatComponent,
+    navigationOptions:{
+      header:null,
+      gesturesEnabled:false,
+    }
+  },
+  Compose:{
+    screen:Compose,
     navigationOptions:{
       header:null,
       gesturesEnabled:false,
