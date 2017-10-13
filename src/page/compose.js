@@ -6,7 +6,8 @@ import {  Navigator ,
     StyleSheet,
     ImageBackground,
     TouchableOpacity,
-    TextInput
+    TextInput,
+    FlatList,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { createStore , applyMiddleware , combineReducers } from 'redux';
@@ -27,23 +28,27 @@ let middlewares = [
 const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
 const reducer = combineReducers({ComposeRedus});
 const store = createStoreWithMiddleware(reducer);
-export default class Compose extends Component {
+
+class ComposeTem extends Component {
 
   constructor(props){
     super(props);
     this.loadList = this.loadList.bind(this);
   }
-  _renderComponent (){
+  componentWillMount (){
     this.loadList()
   }
 //   setState(tab){
 //       this.state.tab = tab;
 //   }
   loadList (){
+    console.log(this.props);
     const { actions , Compose } = this.props;
     actions.getCompose()
   }
   renderTabber (){
+    const { Compose } = this.props;
+    console.log(Compose);
     return (
         <ImageBackground style={styles.container} source={require('../public/Background.png')}>
             <View style={styles.header}>
@@ -74,30 +79,20 @@ export default class Compose extends Component {
             </View>
             <View style={{flex:1,paddingLeft:25,paddingRight:25}}>
                 <View style={styles.composrCointer}>
-                    <View style={{flex:0,flexDirection:'row',alignItems:'center',paddingTop:25,paddingBottom:25}}>
-                        <Image style={{width:40,height:40}} source={require('../public/Avatar.png')}></Image>
-                        <Text style={{flex:1,paddingLeft:20,color:'#000',paddingRight:20,fontSize:12,fontFamily:'Karla-Bold'}}>
-                            Lucy de Groot
-                        </Text>
-                        <Icon 
-                          name="md-checkmark"
-                          size={ 22 }
-                          style={{flex:0}}
-                          color='#000'
-                        />
-                    </View>
-                    <View style={{flex:0,flexDirection:'row',alignItems:'center',paddingTop:25,paddingBottom:25}}>
-                        <Image style={{width:40,height:40}} source={require('../public/Avatar.png')}></Image>
-                        <Text style={{flex:1,paddingLeft:20,color:'#000',paddingRight:20,fontSize:12,fontFamily:'Karla-Bold'}}>
-                            Lucy de Groot
-                        </Text>
-                        <Icon 
-                          name="md-checkmark"
-                          size={ 22 }
-                          style={{flex:0}}
-                          color='#000'
-                        />
-                    </View>
+                    {!Compose.getIsPending?
+                    <FlatList
+                        data={Compose.composeList}
+                        initialNumToRender = {6}
+                        keyExtractor={(item, index) => item.id}
+                        getItemLayout={(data, index) => (
+                          {length: 65, offset: 65 * index, index}
+                        )}
+                        renderItem={({item}) => this._renderList(item)}
+                    />
+                    :
+                    <View style={[styles.container]}>
+                        <Text>loading....</Text>
+                    </View>}
                 </View>
             </View>
             <View style={{height:110,flexDirection:'column',justifyContent:'space-around',backgroundColor:'#ffec57',paddingLeft:18,paddingRight:18,paddingTop:20,paddingBottom:20}}>
@@ -133,6 +128,24 @@ export default class Compose extends Component {
         </ImageBackground>
     )
   }
+  _renderList(item){
+      return(
+          <TouchableOpacity>
+            <View style={{flex:0,flexDirection:'row',alignItems:'center',paddingTop:25,paddingBottom:25}}>
+                <Image style={{width:40,height:40}} source={require('../public/Avatar.png')}></Image>
+                <Text style={{paddingLeft:20,color:'#000',paddingRight:20,fontSize:12,fontFamily:'Karla-Bold'}}>
+                    {item.name}
+                </Text>
+                <Icon 
+                    name="md-checkmark"
+                    size={ 22 }
+                    style={{flex:0}}
+                    color='#000'
+                />
+            </View>
+          </TouchableOpacity>
+      )
+  }
   render(){
     return(
         <View style={{flex:1}}>
@@ -140,6 +153,22 @@ export default class Compose extends Component {
         </View>
     )
   }
+}
+const LayoutComponent = ComposeTem;
+function mapStateToProps(state){
+  return {
+    Compose : state.ComposeRedus,
+  }
+}
+const ComposeComponent = connectComponent({mapStateToProps,LayoutComponent});
+export default class ComposePage extends Component{
+    render(){
+        return(
+            <Provider store={store}>
+                <ComposeComponent {...this.props} />
+            </Provider>
+        )
+    }
 }
 const styles = StyleSheet.create({
   container:{

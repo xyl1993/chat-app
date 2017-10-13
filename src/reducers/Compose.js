@@ -3,10 +3,9 @@ import {
   ListView
 } from 'react-native';
 
-export default function Compose (state={composeList:[],dataSource:[],getIsPending:true} , action={}){
+export default function Compose (state={composeList:[],getIsPending:true} , action={}){
   const { payload ,error , meta={}} = action;
   const { sequence ={} } = meta;
-  console.log(payload);
   switch (action.type) {
     case types.GET_COMPOSE:
         if(sequence.type !== 'start'){
@@ -15,7 +14,6 @@ export default function Compose (state={composeList:[],dataSource:[],getIsPendin
             return Object.assign(
                 {} , state , {
                     composeList :temp,
-                    dataSource:new ListView.DataSource({rowHasChanged: (r1,r2) => r1!==r2 }).cloneWithRows(temp),
                     getIsPending : false
                 }
             )

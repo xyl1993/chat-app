@@ -4,11 +4,11 @@
             "list":[{
             "id":1,
             "img":"../public/Avatar@2x.png",
-            "name":"今天天气真好"
+            "name":"Lucy de Groot"
         },{
-            "id":1,
+            "id":2,
             "img":"../public/Avatar@2x.png",
-            "name":"今天天气真好"
+            "name":"buty girl"
         }]
     }
 }

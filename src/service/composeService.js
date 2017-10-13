@@ -2,7 +2,7 @@ import * as requestService from './requestService';
 import config from '../config';
 import json from '../data/compose.json';
 const urlPrefix = config.ghDomain;
-export function getCompose({page,limit}){
+export function getCompose(){
   // let url = `../data/dynamicList.json`;
   // let url = `${urlPrefix}`;
   // return requestService.get(url,true).then( data =>{

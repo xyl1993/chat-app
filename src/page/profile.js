@@ -19,9 +19,14 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button'
 
 
-export default class NewAccount extends Component {
+export default class Profile extends Component {
   constructor (props){
     super(props);
+  }
+  onSelect(index, value){
+    this.setState({
+        text: `Selected index: ${index} , value: ${value}`
+    })
   }
   render (){
     return (
@@ -39,23 +44,44 @@ export default class NewAccount extends Component {
         <View style={{flex:1,paddingTop:62,paddingLeft:25,paddingRight:25,paddingBottom:73}}>  
             <View style={{flex:1,backgroundColor:'#fff',}}>
                 <View style={{flex:1,paddingTop:50,paddingLeft:40,paddingRight:40,marginBottom:10}}>
+                    <View style={{flexDirection:'row'}}>
+                        <View style={{flex:1}}>
+                            <Image style={{alignSelf:'flex-start'}} source={require('../public/Avatar.png')} />
+                        </View>
+                        <View style={{flex:1}}>
+                            <Text style={{alignSelf:'center',marginTop:10,paddingBottom:2,fontSize:13,color:'#ad9cd6',borderBottomWidth:1,borderBottomColor:'#ad9cd6'}}>
+                                Upload Photo
+                            </Text>
+                        </View>
+                    </View>
                     <Text style={{fontSize:10,color:'#ad9cd6',marginTop:30}}>
-                        USERNAME
+                        BIRTHDAY
                     </Text>
                     <TextInput secureTextEntry={true} underlineColorAndroid={'#000'}/>
                     <Text style={{fontSize:10,color:'#ad9cd6',marginTop:30}}>
-                        PASSWORD
+                        GENDER
                     </Text>
-                    <TextInput secureTextEntry={true} underlineColorAndroid={'#000'}/>
-                    <Text style={{fontSize:10,color:'#ad9cd6',marginTop:30}}>
-                       QUERY PASSWORD
-                    </Text>
-                    <TextInput secureTextEntry={true} underlineColorAndroid={'#000'}/>
+                    <View>
+                        <RadioGroup style={{flexDirection:'row'} }
+                            color = '#000'
+                            size={16}
+                            onSelect = {(index, value) => this.onSelect(index, value)}
+                        >
+                            <RadioButton value={'item1'} color='#000'>
+                                <Text style={{marginTop:-6}}>Male</Text>
+                            </RadioButton>
+                    
+                            <RadioButton value={'item2'} color="#000">
+                                <Text style={{marginTop:-6}}>Female</Text>
+                            </RadioButton>
+                        </RadioGroup>
+                    </View>
                 </View>
                 <View style={styles.button}>
                     <Text style={styles.buttonText}>Next Step</Text>
                 </View>
             </View>
+            <Text style={[{fontSize:70,position:'absolute',right:0,top:10,color:'#000'},styles.defaultFontFamily]}>Profile</Text>
         </View>
       </ImageBackground>
     )

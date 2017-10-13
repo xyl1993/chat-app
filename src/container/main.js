@@ -20,7 +20,7 @@ import TabNavigator from 'react-native-tab-navigator';
 import Icon from 'react-native-vector-icons/Ionicons';
 import connectComponent from '../utils/connectComponent';
 import * as Dynamicpage from '../page/dynamic';
-
+console.log(Dynamicpage);
 const logger = createLogger({
 	predicate: (getState, action) => false,
 	duration: true,

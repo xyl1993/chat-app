@@ -29,7 +29,7 @@ export default class Menu extends Component {
           <Text style={styles.defaultFontFamily}>
             Home
           </Text>
-          <Text style={styles.defaultFontFamily} onPress={() => this.props.navigation.navigate('userHome')}> 
+          <Text style={styles.defaultFontFamily} onPress={() => this.props.navigation.navigate('Profile')}> 
             Profile
           </Text>
           <Text style={styles.defaultFontFamily} onPress={() => this.props.navigation.navigate('Compose')} >

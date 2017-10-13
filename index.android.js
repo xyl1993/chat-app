@@ -14,6 +14,7 @@ import {
 import LoginComponent from './src/page/login';
 import MainComponent from './src/container/main';
 import NewAccount from './src/page/newAccount';
+import ProfileComponent from './src/page/profile';
 import Walkthrough from './src/page/walkthrough';
 import MenuComponent from './src/page/menu';
 import UserHomeComponent from './src/page/userHome';
@@ -69,6 +70,13 @@ const RouteConfigs = {
       gesturesEnabled:false,
     }
   },
+  Profile:{
+    screen:ProfileComponent,
+    navigationOptions:{
+      header:null,
+      gesturesEnabled:false,
+    }
+  },
   Compose:{
     screen:Compose,
     navigationOptions:{
@@ -78,7 +86,7 @@ const RouteConfigs = {
   }
 }
 const StackNavigatorConfig = {
-  initialRouteName:'Main'
+  initialRouteName:'Login'
 }
 const mode = {
 }
